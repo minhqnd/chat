@@ -144,7 +144,7 @@ function loadchat() {
         //} else {
         //	document.getElementById('generalchat').innerHTML = (message)
         //}
-        if (convertdate(Date.now()) != convertdate(id)) {
+        if (convertdate(Date.now()) != convertdate(snapshot.val().id)) {
             deletechat();
         }
     });
