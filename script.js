@@ -15,7 +15,31 @@ const chatmain = document.getElementById('chat-area-main');
 const toggleButton = document.querySelector('.dark-light');
 const colors = document.querySelectorAll('.color');
 const likebutton = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="#ffffff" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" class="likebutton"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" /></svg>';
-const id = Date.now();
+// var id = {
+// function(){
+// if (localStorage['idchat'] == '') {
+// localStorage['idchat'] = Date.now();
+// return localStorage['idchat'];
+// } else {
+// console.log('cc')
+// return localStorage['idchat']
+// }
+// }
+// }
+
+var local = {
+    set: function (key, val) {
+        localStorage[key] = val;
+    },
+    get: function (key) {
+        return localStorage[key];
+    },
+    id: function () {
+        return parseInt(localStorage['idchat']);
+    }
+};
+
+var id = local.id('idchat');
 var user = 'guest';
 console.log(id);
 check = false;
@@ -35,8 +59,18 @@ colors.forEach(color => {
 });
 
 toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    if (local.get('darkchat') == 'true') {
+        local.set('darkchat', false);
+        document.body.classList.toggle('dark-mode');
+    } else {
+        local.set('darkchat', true);
+        document.body.classList.toggle('dark-mode');
+    };
 });
+
+if (local.get('darkchat') == 'true') {
+    document.body.classList.toggle('dark-mode');
+}
 
 function refresh() {
     chatmain.innerHTML = '';
