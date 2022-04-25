@@ -35,11 +35,18 @@ var local = {
         return localStorage[key];
     },
     id: function () {
+		// to return int
         return parseInt(localStorage['idchat']);
     }
 };
-
-var id = local.id('idchat');
+//set id cho user
+if (localStorage['idchat'] == undefined) {
+    local.set('idchat', Date.now());
+	var id = local.id('idchat');
+} else {
+    var id = local.id('idchat');
+}	
+ 
 var user = 'guest';
 console.log(id);
 check = false;
