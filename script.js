@@ -187,9 +187,9 @@ function loadchat() {
         //}
 
         // ! cái này để xóa chat nhưng bố mày xóa rồi
-        if (convertdate(Date.now()) != convertdate(snapshot.val().id)) {
-            deletechat();
-        }
+        // if (convertdate(Date.now()) != convertdate(snapshot.val().id)) {
+        //     deletechat();
+        // }
     });
 }
 
